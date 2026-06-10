@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ═══════════════════════════════════════════════════
+       SEO & Social
+       ═══════════════════════════════════════════════════ -->
+    <title>JobsWatch — Coming Soon</title>
+    <meta
+      name="description"
+      content="JobsWatch is a specialist recruitment consultancy connecting dream teams to dream roles. Launching soon."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:title" content="JobsWatch — Coming Soon" />
+    <meta
+      property="og:description"
+      content="Connecting dream teams to dream roles. Something special is on the way."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0D1B4B" />
+
+    <!-- ═══════════════════════════════════════════════════
+       Fonts — DM Sans (closest match to logo letterforms)
+       ═══════════════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ─────────────────────────────────────────
+       DESIGN TOKENS  (extracted from the logo)
+       Navy  #0D1B4B  — all text
+       Blue  #1F4EC9  — J, w, arc, dot, CTAs
+    ───────────────────────────────────────── */
+      :root {
+        --navy: #0d1b4b;
+        --blue: #1f4ec9;
+        --blue-tint: #eef2fb;
+        --bg: #f4f6fd; /* barely-there blue wash */
+        --surface: #ffffff;
+        --text-1: #0d1b4b;
+        --text-2: #5c6580;
+        --text-3: #9ba3bc;
+        --border: rgba(31, 78, 201, 0.18);
+      }
+
+      /* Dark mode — keeps the brand intact on dark screens */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #090e1f;
+          --surface: #111827;
+          --blue-tint: #0c1940;
+          --text-1: #e4e8f5;
+          --text-2: #8892a8;
+          --text-3: #444d65;
+          --border: rgba(100, 140, 255, 0.22);
+        }
+      }
+
+      /* ─── Reset ─── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        font-family:
+          "DM Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: var(--bg);
+        color: var(--text-1);
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ─── Page entrance ─── */
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .stage {
+        animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      /* ─── Layout ─── */
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 56px 24px;
+      }
+
+      .stage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 520px;
+      }
+
+      /* ─────────────────────────────────────────
+       ANIMATED LOGO MARK
+       Orbital arc (330° with a 30° gap) + dot
+       rotate together, J stays still.
+    ───────────────────────────────────────── */
+      .logo-mark {
+        width: 108px;
+        height: 108px;
+        margin-bottom: 28px;
+      }
+
+      /* Orbit animation — explicit SVG-space origin (50px 50px = centre of
+       the 100×100 viewBox). transform-box removed; it causes Safari/Edge
+       to pick the wrong origin and kill the animation entirely.        */
+      @-webkit-keyframes orbit {
+        from {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes orbit {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .orbit-group {
+        -webkit-transform-origin: 50px 50px;
+        transform-origin: 50px 50px;
+        -webkit-animation: orbit 18s linear infinite;
+        animation: orbit 18s linear infinite;
+      }
+
+      /* Respect user preference for reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .orbit-group {
+          animation: none;
+        }
+        .stage {
+          animation: none;
+        }
+      }
+
+      /* ─── Wordmark ─── */
+      .wordmark {
+        font-size: clamp(38px, 9vw, 60px);
+        font-weight: 600;
+        letter-spacing: -0.5px;
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+
+      .w-blue {
+        color: var(--blue);
+      }
+      .w-navy {
+        color: var(--navy);
+      }
+      @media (prefers-color-scheme: dark) {
+        .w-navy {
+          color: var(--text-1);
+        }
+      }
+
+      /* ─── Tagline ─── */
+      .tagline {
+        font-size: clamp(11px, 2.2vw, 14px);
+        font-weight: 300;
+        letter-spacing: 0.22em;
+        text-transform: lowercase;
+        color: var(--text-2);
+        margin-bottom: 52px;
+      }
+
+      /* ─── Vertical rule ─── */
+      .rule {
+        width: 1px;
+        height: 52px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--blue) 40%,
+          var(--blue) 60%,
+          transparent
+        );
+        margin: 0 auto 52px;
+        opacity: 0.45;
+      }
+
+      /* ─── Copy ─── */
+      .headline {
+        font-size: clamp(20px, 4.5vw, 28px);
+        font-weight: 500;
+        line-height: 1.3;
+        margin-bottom: 14px;
+      }
+
+      .body-copy {
+        font-size: clamp(13px, 2.2vw, 15px);
+        font-weight: 400;
+        color: var(--text-2);
+        line-height: 1.7;
+        max-width: 400px;
+        margin-bottom: 44px;
+      }
+
+      /* ─── Contact ─── */
+      .eyebrow {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        margin-bottom: 14px;
+      }
+
+      /* ─────────────────────────────────────────
+       EMAIL BUTTON
+       Pill-shaped, lifts on hover.
+    ───────────────────────────────────────── */
+      .email-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 30px;
+        font-family: inherit;
+        font-size: clamp(14px, 2.5vw, 16px);
+        font-weight: 500;
+        color: var(--blue);
+        text-decoration: none;
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: 100px; /* pill */
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease,
+          transform 0.2s ease;
+        cursor: pointer;
+      }
+
+      .email-btn:hover {
+        border-color: var(--blue);
+        background: var(--blue-tint);
+        box-shadow: 0 6px 24px rgba(31, 78, 201, 0.14);
+        transform: translateY(-2px);
+      }
+
+      .email-btn:active {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+
+      .email-btn svg {
+        flex-shrink: 0;
+        opacity: 0.75;
+      }
+
+      /* ─── Print: freeze animation ─── */
+      @media print {
+        .orbit-group {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="stage">
+        <!-- ══════════════════════════════════
+           LOGO MARK  (animated SVG)
+
+           Circle r=42, circumference ≈ 264px
+           dasharray  : 240 solid + 24 gap = 264
+           dashoffset : -198  →  arc START at
+                        12 o'clock (top)
+           Dot cx=50 cy=8 sits exactly at
+           the leading tip of the arc.
+           Both rotate as one <g> element.
+      ══════════════════════════════════ -->
+        <div
+          class="logo-mark"
+          role="img"
+          aria-label="JobsWatch animated logo mark"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+            width="108"
+            height="108"
+            aria-hidden="true"
+          >
+            <!-- Orbital arc + dot — animated together -->
+            <g class="orbit-group">
+              <circle
+                cx="50"
+                cy="50"
+                r="42"
+                stroke="#1F4EC9"
+                stroke-width="3.5"
+                fill="none"
+                stroke-dasharray="240 24"
+                stroke-dashoffset="-198"
+                stroke-linecap="round"
+              />
+              <!-- Leading dot (tip of the arc, at 12 o'clock) -->
+              <circle cx="50" cy="8" r="5.5" fill="#1F4EC9" />
+            </g>
+
+            <!-- J — stationary, optically centred.
+               dominant-baseline="central" aligns the em-square midpoint
+               to y. Set y=46 (not 50) to compensate for the J descender
+               which otherwise pulls the visual mass below centre.      -->
+            <text
+              x="50"
+              y="46"
+              font-family="DM Sans, Helvetica Neue, Helvetica, Arial, sans-serif"
+              font-size="56"
+              font-weight="700"
+              fill="#1F4EC9"
+              text-anchor="middle"
+              dominant-baseline="central"
+            >
+              J
+            </text>
+          </svg>
+        </div>
+
+        <!-- Wordmark -->
+        <h1 class="wordmark" aria-label="Jobswatch">
+          <span class="w-blue">J</span><span class="w-navy">obs</span
+          ><span class="w-blue">w</span><span class="w-navy">atch</span>
+        </h1>
+
+        <!-- Tagline — matches the logo exactly -->
+        <p class="tagline">connecting dream teams to dream roles</p>
+
+        <!-- Visual separator -->
+        <div class="rule" aria-hidden="true"></div>
+
+        <!-- Coming soon copy -->
+        <p class="headline">Something special is on its way.</p>
+        <p class="body-copy">
+          We're building a new home for exceptional opportunities — a better way
+          for candidates to find their next role and for employers to find the
+          right people.
+        </p>
+
+        <!-- ══════════════════════════════════
+           CONTACT
+           ⚠️  Replace the email below with
+               the real JobsWatch address
+               before you go live.
+      ══════════════════════════════════ -->
+        <p class="eyebrow">In the meantime, reach us at</p>
+
+        <a href="mailto:rathi@jobswatch.net" class="email-btn">
+          <!-- Envelope icon — inline SVG, no external dependency -->
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 17 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect
+              x="1.5"
+              y="3.5"
+              width="14"
+              height="10"
+              rx="1.75"
+              stroke="currentColor"
+              stroke-width="1.4"
+            />
+            <path
+              d="M1.5 6L8.5 10L15.5 6"
+              stroke="currentColor"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            />
+          </svg>
+          <!-- ⚠️  REPLACE THIS EMAIL BEFORE DEPLOYING -->
+          rathi@jobswatch.net
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
